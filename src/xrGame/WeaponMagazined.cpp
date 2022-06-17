@@ -574,6 +574,12 @@ void CWeaponMagazined::OnStateSwitch(u32 S, u32 oldState)
 		if (smart_cast<CActor*>(this->H_Parent()) && (Level().CurrentViewEntity() == H_Parent()))
 			CurrentGameUI()->AddCustomStatic("gun_jammed", true);
 		break;
+	case eAimStart:
+		switch2_StartAim();
+		break;
+	case eAimEnd:
+		switch2_EndAim();
+		break;
 	case eMagEmpty:
 		switch2_Empty();
 		break;
@@ -919,6 +925,8 @@ void CWeaponMagazined::OnAnimationEnd(u32 state)
 		break; // End of Show
 	case eIdle: switch2_Idle();
 		break; // Keep showing idle
+	case eAimStart: SwitchState(eIdle);		break;
+	case eAimEnd:   SwitchState(eIdle);		break;
 	case eSwitchMode: UpdateFireMode();
 		SwitchState(eIdle);
 		break; // Back to idle
