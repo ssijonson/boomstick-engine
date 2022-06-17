@@ -162,6 +162,7 @@ public:
 		eSubstateReloadBegin = 0,
 		eSubstateReloadInProcess,
 		eSubstateReloadEnd,
+		eSubstateReloadInProcessEmptyEnd,
 	};
 
 	enum
