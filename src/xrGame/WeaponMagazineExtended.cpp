@@ -6,14 +6,20 @@ void CWeaponMagazined::switch2_StartAim()
 {
 	VERIFY(GetState() == eAimStart);
 
-	PlayHUDMotion("anm_idle_aim_start", TRUE, this, GetState());
+	if(iAmmoElapsed == 0 && HudAnimationExist("anm_idle_aim_start_empty"))
+		PlayHUDMotion("anm_idle_aim_start_empty", TRUE, this, GetState());
+	else
+		PlayHUDMotion("anm_idle_aim_start", TRUE, this, GetState());
 }
 
 void CWeaponMagazined::switch2_EndAim()
 {
 	VERIFY(GetState() == eAimEnd);
 
-	PlayHUDMotion("anm_idle_aim_end", TRUE, this, GetState());
+	if (iAmmoElapsed == 0 && HudAnimationExist("anm_idle_aim_end_empty"))
+		PlayHUDMotion("anm_idle_aim_end_empty", TRUE, this, GetState());
+	else
+		PlayHUDMotion("anm_idle_aim_end", TRUE, this, GetState());
 }
 
 void CWeaponMagazinedWGrenade::switch2_StartAim()
@@ -23,7 +29,10 @@ void CWeaponMagazinedWGrenade::switch2_StartAim()
 	if (!m_bGrenadeMode || !IsGrenadeLauncherAttached())
 		inherited::switch2_StartAim();
 
-	PlayHUDMotion("anm_idle_aim_start_g", TRUE, this, GetState());
+	if (iAmmoElapsed == 0 && HudAnimationExist("anm_idle_aim_start_g_empty"))
+		PlayHUDMotion("anm_idle_aim_start_g_empty", TRUE, this, GetState());
+	else
+		PlayHUDMotion("anm_idle_aim_start_g", TRUE, this, GetState());
 }
 
 void CWeaponMagazinedWGrenade::switch2_EndAim()
@@ -33,5 +42,8 @@ void CWeaponMagazinedWGrenade::switch2_EndAim()
 	if (!m_bGrenadeMode || !IsGrenadeLauncherAttached())
 		inherited::switch2_EndAim();
 
-	PlayHUDMotion("anm_idle_aim_end_g", TRUE, this, GetState());
+	if (iAmmoElapsed == 0 && HudAnimationExist("anm_idle_aim_end_g_empty"))
+		PlayHUDMotion("anm_idle_aim_end_g_empty", TRUE, this, GetState());
+	else
+		PlayHUDMotion("anm_idle_aim_end_g", TRUE, this, GetState());
 }

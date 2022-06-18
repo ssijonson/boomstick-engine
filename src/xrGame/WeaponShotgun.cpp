@@ -165,7 +165,6 @@ void CWeaponShotgun::OnStateSwitch(u32 S, u32 oldState)
 void CWeaponShotgun::switch2_StartReload()
 {
 	BeginReloadWasEmpty = !m_magazine.size();
-	BeginReloadWasEmpty_2 = BeginReloadWasEmpty;
 	PlaySound("sndOpen", get_LastFP());
 	PlayAnimOpenWeapon();
 	SetPending(TRUE);
